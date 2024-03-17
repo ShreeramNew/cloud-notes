@@ -1,7 +1,9 @@
 import "./App.css";
 import AddNote from "./components/AddNote";
 import AllNotes from "./components/AllNotes";
+import OpenFullNote from "./contexts/OpenFullNote";
 import Refresh from "./contexts/Refresh";
+
 
 function App() {
    return (
@@ -9,7 +11,7 @@ function App() {
          <div id="componentsConatiner">
             <Refresh>
                <AddNote />
-               <AllNotes />
+                  <AllNotes />
             </Refresh>
          </div>
       </>
