@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AddNote from "./components/AddNote";
+import AllNotes from "./components/AllNotes";
+import Refresh from "./contexts/Refresh";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <>
+         <div id="componentsConatiner">
+            <Refresh>
+               <AddNote />
+               <AllNotes />
+            </Refresh>
+         </div>
+      </>
+   );
 }
 
 export default App;
