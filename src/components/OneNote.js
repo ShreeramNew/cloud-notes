@@ -4,15 +4,16 @@ import { OpenNote } from "../contexts/OpenFullNote";
 
 export default function OneNote(props) {
    let value = useContext(OpenNote);
-   let handleopen = (e) => {
-      let SavedTitle = props.title;
-      let SavedContent = props.content;
-
+   let handleopen = () => {
+      // let SavedTitle = props.title;
+      // let SavedContent = props.content;
    };
    return (
-      <div onClick={handleopen} id="NoteContainer">
-         <h2 id="incomingTitle">{props.title}</h2>
-         <div id="incomingContent">{props.content}</div>
-      </div>
+      <>
+         <div onClick={handleopen} id="NoteContainer">
+            <h2 id="incomingTitle">{props.title}</h2>
+            <div id="incomingContent">{props.content}</div>
+         </div>
+      </>
    );
 }

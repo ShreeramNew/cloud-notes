@@ -23,15 +23,13 @@ export default function AllNotes() {
    }, [contextData.trigger]);
 
    return (
-      <OpenFullNote>
-         <div className="" id="notesContainer">
-            <h1>All Notes</h1>
-            {notes.map((note) => {
-               return (
-                  <OneNote key={note._id} id={note._id} title={note.title} content={note.content} />
-               );
-            })}
-         </div>
-      </OpenFullNote>
+      <div className="" id="notesContainer">
+         <h1>All Notes</h1>
+         {notes.map((note) => {
+            return (
+               <OneNote key={note._id} id={note._id} title={note.title} content={note.content} />
+            );
+         })}
+      </div>
    );
 }
