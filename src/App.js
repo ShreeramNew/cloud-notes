@@ -13,18 +13,20 @@ import OneNote from "./components/OneNote";
 import AllElementsContainer from "./AllElementsContainer";
 
 const router = createBrowserRouter(
-   createRoutesFromElements(
-      <Route path="/" element={<AllElementsContainer />}>
-         <Route path="/OpenNote" element={<OpenNote />} />
-      </Route>
-   )
+  [{
+   path:"/",
+   element:<AllElementsContainer/>
+  },
+{
+   path:'/hh',
+   element:<AddNote/>
+}]
 );
 
 function App() {
    return (
       <>
          <RouterProvider router={router} />
-         <AllElementsContainer />
       </>
    );
 }
