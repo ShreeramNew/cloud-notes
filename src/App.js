@@ -11,17 +11,18 @@ import OpenNote from "./components/OpenNote";
 import Refresh from "./contexts/Refresh";
 import OneNote from "./components/OneNote";
 import AllElementsContainer from "./AllElementsContainer";
+import Try from "./components/Try";
 
-const router = createBrowserRouter(
-  [{
-   path:"/",
-   element:<AllElementsContainer/>
-  },
-{
-   path:'/hh',
-   element:<AddNote/>
-}]
-);
+const router = createBrowserRouter([
+   {
+      path: "/",
+      element: <Try />,
+   },
+   {
+      path: "/hh",
+      element: <AddNote />,
+   },
+]);
 
 function App() {
    return (

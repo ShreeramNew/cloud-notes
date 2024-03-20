@@ -1,0 +1,9 @@
+#some{
+    display: none;
+}
+#show{
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    
+}
