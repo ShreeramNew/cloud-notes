@@ -10,3 +10,6 @@
     border-radius: 6px;
     background-color: rgb(221, 212, 212);
 }
+#link{
+    display: none;
+}

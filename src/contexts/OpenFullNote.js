@@ -1,5 +1,5 @@
 import React, { createContext,useState } from 'react'
-export const OpenNote=createContext(); 
+export const OpenNoteContext=createContext(); 
 
 export default function OpenFullNote(props) {
   const [isOpenNote,setIsOpenNote]=useState(false)
@@ -11,8 +11,8 @@ export default function OpenFullNote(props) {
     setIsOpenNote:changeIsOpenNote
   }
   return (
-    <OpenNote.Provider value={dataToSend}>
+    <OpenNoteContext.Provider value={dataToSend}>
         {props.children}
-    </OpenNote.Provider>
+    </OpenNoteContext.Provider>
   )
 }

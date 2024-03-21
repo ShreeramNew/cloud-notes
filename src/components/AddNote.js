@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "../styles/AddNote.css";
 import { RefreshContext } from "../contexts/Refresh";
+
+
 export default function AddNote() {
    let Content = useRef(null);
    let contextData = useContext(RefreshContext);
@@ -14,7 +16,7 @@ export default function AddNote() {
    //Working with placeholder
    let handleClickType = () => {
       if (isPlaceholderPresent) {
-         Content.current.innerHTML = "";
+         Content.current.innerText = "";
          Content.current.style.opacity = "100%";
          setIsPlaceholderPresent(false);
       }
@@ -23,7 +25,7 @@ export default function AddNote() {
    let handleSave = async () => {
       let data = {
          title: document.getElementById("Title").value,
-         content: Content.current.innerHTML,
+         content: Content.current.innerText,
       };
       if (data.title === "" || data.content === "") {
          alert("Please fill both Title and Content");
@@ -32,7 +34,7 @@ export default function AddNote() {
 
       //After getting the data, clear the fields
       document.getElementById("Title").value = "";
-      Content.current.innerHTML = "";
+      Content.current.innerText = "";
 
       //Save the new note into database
       const API_URL = "http://localhost:5000";
