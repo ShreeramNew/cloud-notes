@@ -4,7 +4,7 @@ import { OpenNoteContext } from "../contexts/OpenFullNote";
 import { Link } from "react-router-dom";
 
 export default function OneNote(props) {
-   let value = useContext(OpenNoteContext);
+   // let value = useContext(OpenNoteContext);
    const linkElement = useRef();
    let handleopen = () => {
       linkElement.current.click();

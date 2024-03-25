@@ -53,7 +53,7 @@ export default function AddNote() {
       <div id="AddNoteContainer">
          <input id="Title" type="text" placeholder="Title" />
          <div
-            onClick={handleClickType}
+            onFocus={handleClickType}
             id="Content"
             type="text"
             placeholder="Type here"
