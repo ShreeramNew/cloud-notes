@@ -46,6 +46,12 @@
     padding-top: 2px;
 
 }
+
+#delete{
+   position: absolute;
+   top:0.5%;
+   right:4%;
+}
 #close:hover{
     background-color: red;
     color: white;
