@@ -10,7 +10,7 @@ export default function AllNotes() {
    //Fetch all notes stored in DataBase
    let fetchNotes = async () => {
       try {
-         let results = await (await fetch("http://localhost:5000")).json();
+         let results = await (await fetch("http://localhost:5000/notes")).json();
          setNotes(results.reverse());
       } catch (error) {
          console.log(error);
@@ -27,7 +27,7 @@ export default function AllNotes() {
          <h1>All Notes</h1>
          {notes.map((note) => {
             return (
-               <OneNote key={note._id} uniqueId={note._id} title={note.title} content={note.content} />
+               <OneNote key={note.id} uniqueId={note.id} title={note.title} content={note.content} />
             );
          })}
       </div>

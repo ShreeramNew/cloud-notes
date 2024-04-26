@@ -24,6 +24,7 @@ export default function AddNote() {
 
    let handleSave = async () => {
       let data = {
+         email:"shreerambca1@gmail.com",
          title: document.getElementById("Title").value,
          content: Content.current.innerText,
       };
@@ -37,7 +38,7 @@ export default function AddNote() {
       Content.current.innerText = "";
 
       //Save the new note into database
-      const API_URL = "http://localhost:5000";
+      const API_URL = "http://localhost:5000/save";
       await fetch(API_URL, {
          method: "POST",
          headers: {
