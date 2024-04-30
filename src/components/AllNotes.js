@@ -3,9 +3,11 @@ import "../styles/AllNotes.css";
 import OneNote from "./OneNote";
 import { RefreshContext } from "../contexts/Refresh";
 import AddNote from "./AddNote";
+import HandleError from "./HandleError";
 
 export default function AllNotes() {
    const [notes, setNotes] = useState([]);
+   const [serverError, setServerError] = useState(false);
    let contextData = useContext(RefreshContext);
 
    //Fetch all notes stored in DataBase
@@ -14,7 +16,11 @@ export default function AllNotes() {
          let results = await (await fetch("http://localhost:5000/notes")).json();
          console.log(results);
          setNotes(results.reverse());
+         if (results) {
+            alert("Yes it is null");
+         }
       } catch (error) {
+         setServerError(true)
          console.log(error);
       }
    };
@@ -26,12 +32,19 @@ export default function AllNotes() {
 
    return (
       <div className="" id="notesContainer">
-         <AddNote/>
+         {!serverError && <AddNote />}
+         {serverError && <HandleError/>}
+
 
          {/* <h1>All Notes</h1> */}
          {notes.map((note) => {
             return (
-               <OneNote key={note.id} uniqueId={note.id} title={note.title} content={note.content} />
+               <OneNote
+                  key={note.id}
+                  uniqueId={note.id}
+                  title={note.title}
+                  content={note.content}
+               />
             );
          })}
       </div>
