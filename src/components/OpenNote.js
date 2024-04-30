@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import "../styles/OpenNote.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 
 export default function OpenNote() {

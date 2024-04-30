@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "../styles/AllNotes.css";
 import OneNote from "./OneNote";
 import { RefreshContext } from "../contexts/Refresh";
+import AddNote from "./AddNote";
 
 export default function AllNotes() {
    const [notes, setNotes] = useState([]);
@@ -11,6 +12,7 @@ export default function AllNotes() {
    let fetchNotes = async () => {
       try {
          let results = await (await fetch("http://localhost:5000/notes")).json();
+         console.log(results);
          setNotes(results.reverse());
       } catch (error) {
          console.log(error);
@@ -24,7 +26,9 @@ export default function AllNotes() {
 
    return (
       <div className="" id="notesContainer">
-         <h1>All Notes</h1>
+         <AddNote/>
+
+         {/* <h1>All Notes</h1> */}
          {notes.map((note) => {
             return (
                <OneNote key={note.id} uniqueId={note.id} title={note.title} content={note.content} />
