@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "../styles/AddNote.css";
 import { RefreshContext } from "../contexts/Refresh";
 
-
 export default function AddNote() {
    let Content = useRef(null);
    let contextData = useContext(RefreshContext);
@@ -22,9 +21,17 @@ export default function AddNote() {
       }
    };
 
+   let handlePlaceholder = () => {
+      if (Content.current.innerText === "") {
+         Content.current.innerText = "Type here...";
+         Content.current.style.opacity = "60%";
+         setIsPlaceholderPresent(true);
+      }
+   };
+
    let handleSave = async () => {
       let data = {
-         email:"shreerambca1@gmail.com",
+         email: "shreerambca1@gmail.com",
          title: document.getElementById("Title").value,
          content: Content.current.innerText,
       };
@@ -49,7 +56,7 @@ export default function AddNote() {
 
       contextData.setTrigger((prevValue) => !prevValue); //Trigger the refresh
    };
-   
+
    return (
       <div id="AddNoteContainer">
          <input id="Title" type="text" placeholder="Title" />
@@ -59,6 +66,7 @@ export default function AddNote() {
             type="text"
             placeholder="Type here"
             contentEditable={true}
+            onBlur={handlePlaceholder}
          >
             Type Here...
          </div>

@@ -7,18 +7,15 @@ import HandleError from "./HandleError";
 
 export default function AllNotes() {
    const [notes, setNotes] = useState([]);
-   const [serverError, setServerError] = useState(false);
+   const [serverError, setServerError] = useState(true);
    let contextData = useContext(RefreshContext);
 
    //Fetch all notes stored in DataBase
    let fetchNotes = async () => {
       try {
          let results = await (await fetch("http://localhost:5000/notes")).json();
-         console.log(results);
+         setServerError(false);
          setNotes(results.reverse());
-         if (results) {
-            alert("Yes it is null");
-         }
       } catch (error) {
          setServerError(true)
          console.log(error);
