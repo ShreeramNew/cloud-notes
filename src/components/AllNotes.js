@@ -4,6 +4,7 @@ import OneNote from "./OneNote";
 import { RefreshContext } from "../contexts/Refresh";
 import AddNote from "./AddNote";
 import HandleError from "./HandleError";
+import Login from "./Login";
 
 export default function AllNotes() {
    const [notes, setNotes] = useState([]);
@@ -31,6 +32,7 @@ export default function AllNotes() {
       <div className="" id="notesContainer">
          {!serverError && <AddNote />}
          {serverError && <HandleError/>}
+         <Login/>
 
 
          {/* <h1>All Notes</h1> */}
