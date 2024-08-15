@@ -1,25 +1,42 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "../styles/AllNotes.css";
 import OneNote from "./OneNote";
 import { RefreshContext } from "../contexts/Refresh";
 import AddNote from "./AddNote";
 import HandleError from "./HandleError";
 import Login from "./Login";
+import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 export default function AllNotes() {
    const [notes, setNotes] = useState([]);
-   const [serverError, setServerError] = useState(true);
+   const [serverError, setServerError] = useState(false);
+   const [showLoading, setShowLoading] = useState(true);
+   const linkTologin = useRef(null);
    let contextData = useContext(RefreshContext);
 
    //Fetch all notes stored in DataBase
    let fetchNotes = async () => {
       try {
-         let results = await (await fetch("http://localhost:5000/notes")).json();
-         setServerError(false);
-         setNotes(results.reverse());
+         let response = await fetch("http://localhost:5000/notes", { credentials: "include" });
+         switch (response.status) {
+            case 200:
+               let results = await response.json();
+               setNotes(results.reverse());
+               setServerError(false);
+               break;
+            case 401:
+               linkTologin.current.click();
+               break;
+            default:
+               serverError(true);
+               break;
+         }
+         setShowLoading(false);
       } catch (error) {
-         setServerError(true)
+         setServerError(true);
          console.log(error);
+         setShowLoading(false);
       }
    };
 
@@ -30,10 +47,10 @@ export default function AllNotes() {
 
    return (
       <div className="" id="notesContainer">
-         {!serverError && <AddNote />}
-         {serverError && <HandleError/>}
-         <Login/>
-
+         {!serverError && !showLoading && <AddNote />}
+         {serverError && <HandleError />}
+         {showLoading && <Loading />}
+         <Link ref={linkTologin} style={{ display: "none" }} to="/login" />
 
          {/* <h1>All Notes</h1> */}
          {notes.map((note) => {

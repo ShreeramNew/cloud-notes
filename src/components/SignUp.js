@@ -6,6 +6,7 @@ export default function SignUp() {
    let usernameRef = useRef(null);
    let passwordRef = useRef(null);
    let confirmPasswordRef = useRef(null);
+   let linkToAllNotes = useRef(null);
 
    //Cleanup function
    const cleanupFun = () => {
@@ -59,7 +60,7 @@ export default function SignUp() {
          credentials: "include",
       });
       if (submitResponse.status === 200) {
-         alert("Account created succefully!");
+         linkToAllNotes.current.click();
          cleanupFun();
       } else {
          alert("Sorry!Something went wrong");
@@ -94,8 +95,9 @@ export default function SignUp() {
 
             <input type="submit" value="SignUp" />
             <h4>
-               Already have an account?<Link href="">Login</Link>
+               Already have an account?<Link to="/login">Login</Link>
             </h4>
+            <Link to="/allNotes" ref={linkToAllNotes} />
          </form>
       </>
    );

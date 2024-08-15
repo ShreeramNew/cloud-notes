@@ -52,6 +52,7 @@ export default function AddNote() {
             "Content-Type": "application/json",
          },
          body: JSON.stringify(data),
+         credentials:"include"
       });
 
       contextData.setTrigger((prevValue) => !prevValue); //Trigger the refresh

@@ -15,10 +15,11 @@ export default function OpenNote() {
 
    const fetchPerticularNote = async () => {
       try {
-         const response = await axios.get(url);
-         console.log(url);
-         console.log(response.data);
-         setNote(response.data[0]);
+         const response = await fetch(url, { credentials: "include" });
+         if (response.status === 200) {
+            let result = await response.json();
+            setNote(result[0]);
+         }
       } catch (error) {
          console.log(error);
       }
@@ -36,7 +37,6 @@ export default function OpenNote() {
       //Handles save button
       let data = {
          id: param.id,
-         email: "shreerambca1@gmail.com",
          title: document.getElementById("titleContainer").innerText,
          content: document.getElementById("contentContainer").innerText,
       };
@@ -52,6 +52,7 @@ export default function OpenNote() {
             "Content-Type": "application/json",
          },
          body: JSON.stringify(data),
+         credentials: "include",
       });
       linkElement.current.click();
    };
@@ -65,6 +66,7 @@ export default function OpenNote() {
             headers: {
                "Content-Type": "application/json",
             },
+            credentials: "include",
          });
          linkElement.current.click();
       }

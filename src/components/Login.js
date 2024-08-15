@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
    let usernameRef = useRef(null);
    let passwordRef = useRef(null);
+   let linkToAllNotes = useRef(null);
 
    //Cleanup function
    const cleanupFun = () => {
@@ -31,7 +32,7 @@ export default function Login() {
       });
       switch (submitResponse.status) {
          case 200:
-            alert("Login succefull!");
+            linkToAllNotes.current.click();
             break;
          case 400:
             alert("Incorrect username or password");
@@ -63,8 +64,9 @@ export default function Login() {
             />
             <input type="submit" value="Login" />
             <h4>
-               Don't you have an account?<Link href="">SignUp</Link>
+               Don't you have an account?<Link to="/signup">SignUp</Link>
             </h4>
+            <Link to="/allNotes" ref={linkToAllNotes} />
          </form>
       </>
    );
