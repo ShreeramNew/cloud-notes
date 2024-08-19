@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "../styles/Login.css";
 import { Link } from "react-router-dom";
+const BaseUrl = "http://localhost:5000/api";
 
 export default function SignUp() {
    let usernameRef = useRef(null);
@@ -29,7 +30,7 @@ export default function SignUp() {
       }
 
       //Check if username is already present or not
-      let URL = "http://localhost:5000/getUsers";
+      let URL = BaseUrl + "/auth/getUsers";
       let response = await fetch(URL);
       let isUserPresent = false;
       if (response.status === 200) {
@@ -50,7 +51,7 @@ export default function SignUp() {
       }
 
       //If everything is okay, submit the data
-      let submitURL = "http://localhost:5000/signup";
+      let submitURL = BaseUrl + "/auth/signup";
       let submitResponse = await fetch(submitURL, {
          method: "post",
          headers: {

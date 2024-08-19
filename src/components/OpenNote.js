@@ -3,7 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 import "../styles/OpenNote.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+const BaseUrl = "http://localhost:5000/api";
 
 export default function OpenNote() {
    const param = useParams();
@@ -11,9 +12,10 @@ export default function OpenNote() {
    const [showSave, setShowSave] = useState(false);
    let linkElement = useRef(null);
 
-   const url = `http://localhost:5000/notes?id=${param.id}`;
+   const url = BaseUrl + `/notes/getNotes?id=${param.id}`;
 
    const fetchPerticularNote = async () => {
+      //It access a perticular note using note id
       try {
          const response = await fetch(url, { credentials: "include" });
          if (response.status === 200) {
@@ -24,6 +26,7 @@ export default function OpenNote() {
          console.log(error);
       }
    };
+
    useEffect(() => {
       fetchPerticularNote();
       document.getElementById("contentContainer").focus();
@@ -45,7 +48,8 @@ export default function OpenNote() {
          return;
       }
 
-      const API_URL = "http://localhost:5000/update";
+      //Updating the currently edited note
+      const API_URL = BaseUrl + "/notes/update";
       await fetch(API_URL, {
          method: "PUT",
          headers: {
@@ -58,9 +62,10 @@ export default function OpenNote() {
    };
 
    const handleDelete = async () => {
+      //Handles delete button
       let result = confirm("Are you sure want to delete?");
       if (result) {
-         const API_URL = `http://localhost:5000/delete?id=${param.id}`;
+         const API_URL = BaseUrl + `/notes/delete?id=${param.id}`;
          await fetch(API_URL, {
             method: "delete",
             headers: {
@@ -92,6 +97,7 @@ export default function OpenNote() {
          document.getElementById("contentContainer").innerText = note.content;
       }
    };
+
    return (
       <div id="container">
          <div id="titleContainer" contentEditable="true" onInput={handleChange}>

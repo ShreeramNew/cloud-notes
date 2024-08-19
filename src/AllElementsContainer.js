@@ -5,9 +5,7 @@ import Refresh from "./contexts/Refresh";
 export default function AllElementsContainer() {
    return (
       <div id="componentsConatiner">
-         <Refresh>
-            <AllNotes/>
-         </Refresh>
+         <AllNotes />
       </div>
    );
 }

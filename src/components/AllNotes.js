@@ -7,6 +7,7 @@ import HandleError from "./HandleError";
 import Login from "./Login";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+const BaseUrl = "http://localhost:5000/api";
 
 export default function AllNotes() {
    const [notes, setNotes] = useState([]);
@@ -18,7 +19,7 @@ export default function AllNotes() {
    //Fetch all notes stored in DataBase
    let fetchNotes = async () => {
       try {
-         let response = await fetch("http://localhost:5000/notes", { credentials: "include" });
+         let response = await fetch(BaseUrl + "/notes/getNotes", { credentials: "include" });
          switch (response.status) {
             case 200:
                let results = await response.json();

@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import "../styles/Login.css";
 import { Link } from "react-router-dom";
+const BaseUrl = "http://localhost:5000/api";
+
 
 export default function Login() {
    let usernameRef = useRef(null);
@@ -21,7 +23,7 @@ export default function Login() {
       };
 
       //Submit data
-      let submitURL = "http://localhost:5000/login";
+      let submitURL = BaseUrl+"/auth/login";
       let submitResponse = await fetch(submitURL, {
          method: "post",
          headers: {

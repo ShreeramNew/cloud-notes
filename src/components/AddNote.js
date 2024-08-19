@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "../styles/AddNote.css";
 import { RefreshContext } from "../contexts/Refresh";
+const BaseUrl = "http://localhost:5000/api";
+
 
 export default function AddNote() {
    let Content = useRef(null);
@@ -45,7 +47,7 @@ export default function AddNote() {
       Content.current.innerText = "";
 
       //Save the new note into database
-      const API_URL = "http://localhost:5000/save";
+      const API_URL = BaseUrl+"/notes/save";
       await fetch(API_URL, {
          method: "POST",
          headers: {
